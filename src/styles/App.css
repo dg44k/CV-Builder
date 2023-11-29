@@ -1,0 +1,256 @@
+:root {
+    font-size: 62.5%;
+    --bc-common: #000000f3;
+    --bc-footer: #ccc;
+    --width-sheet: 600px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.appRoot {
+    display: grid;
+    height: 100vh;
+    grid-template-rows: 1fr auto;
+}
+
+main {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.controlPanel {
+    display: flex;
+    flex-direction: column;
+
+    max-height: max(1000px, 100vh);
+    overflow-y: scroll;
+
+    background-color: var(--bc-common);
+    color: #494949;
+    box-shadow: 0 0 10px #000;
+    font-size: 2rem;
+}
+
+.block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    
+    margin: 25px auto;
+}
+
+.uploadButton {
+    display: block;
+    position: relative;
+    width: 125px;
+    height: 125px;
+    margin: 0 auto;
+
+    cursor: pointer;
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    overflow: hidden;
+    background-color: #fff;
+
+    transition: .5s ease-in-out;
+}
+
+.uploadButton:hover {
+    box-shadow: 0 0 10px #606060;
+}
+
+.wrapper_inputs {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.headingBlock {
+    align-self: self-start;
+    
+    font-size: 2rem;
+    color: #fff;
+}
+
+input, .t_area {
+    width: 100%;
+    height: 35px;
+    padding: 2px 15px;
+
+    background: none;
+    color: #ccc;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1.5rem;
+}
+
+input[type=file] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 50%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: #fff;
+}
+
+.t_area {
+    height: 100px;
+    padding-top: 5px;
+    resize: vertical;
+
+    overflow: hidden;
+}
+
+.summaryResume {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 50px;
+
+    padding: 20px;
+    background-color: var(--bc-common);
+}
+
+.sheet {
+    width: var(--width-sheet);
+    height: calc(1.41 * var(--width-sheet));
+
+    background-color: #fff;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+
+    width: 95%;
+    margin: 0 auto;
+    padding: 20px;
+
+    font-size: 2rem;
+}
+
+.resume_header {
+    display: flex;
+    gap: 50px;
+}
+.uploadPicture, .viewPicture {
+    display: none;
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    scale: 1.3;
+    object-fit: cover;
+    
+}
+
+.wrapperPicture {
+    width: 150px;
+    height: 150px;
+
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.viewPicture {
+    width: 100%;
+    height: 100%;
+}
+
+.block_about_me {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.dateContactMe {
+    display: flex;
+    gap: 10px;
+}
+
+.resume_summary, .resume_WorkExperience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    margin-top: 30px;
+}
+
+.headingBlockResume {
+    align-self: flex-start;
+    margin-top: 20px;
+}
+
+.headingBlockResume, .headingBlockExperience {
+    display: none;
+}
+
+.info_summary, .info_workExperience {
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.resume_education {
+    display: flex;
+    flex-direction: column;
+}
+
+.dateUniversity {
+    display: flex;
+    flex-direction: column;
+}
+
+.dateUniversity, .info_schoolName {
+    margin-top: 25px;
+}
+
+footer{
+    flex: 0 0 auto;
+    background-color: var(--bc-footer);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 0;
+}
+
+.link_footer{
+    text-decoration: none;
+    color:#000;
+    font-weight: 500;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.img_footer{
+    display: inline-block;
+    width: 35px;
+    transition: .5s ease-in-out;
+}
+
+.img_footer:hover {
+    scale: 1.2; 
+}
+
