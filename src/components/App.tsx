@@ -155,8 +155,8 @@ export default function App() {
                   <Span className="info_speciality">{dateInput.speciality}</Span>
 
                   <div className="dateContactMe">
-                    <Span className="info_fullname">{dateInput.fullname}</Span>
-                    <Span className="info_speciality">{dateInput.speciality}</Span>
+                    <Span className="info_fullname">{dateInput.phone}</Span>
+                    <Span className="info_speciality">{dateInput.email}</Span>
                   </div>
                 </DateAbout>
     
