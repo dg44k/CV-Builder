@@ -16,16 +16,23 @@ export type InputProps = {
     onChange: ChangeEventHandler<HTMLInputElement> | undefined;
 }
 
-export type ConfigObject = {
-    'picture': HTMLImageElement,
-    'fullname': string,
-    'speciality': string,
-    'phone': string,
-    'email': string,
-    'aboutMe': string,
-    'school': string,
-    'university': string,
-    'dateReceipt': string,
-    'endDate': string,
-    'workExperience' :string,
+export type OutputTextAreaProps = {
+    classNameBlock ?: string;
+    classNameHeading ?: string;
+    classNameParagraph ?: string;
+}
+
+export type HeadingProps = {
+    dataName ?: string;
+    className ?: string;
+}
+
+export type DateAboutProps = {
+    className: string;
+    children: JSX.Element | JSX.Element[];
+}
+
+export type SpanProps = {
+    children: string;
+    className?: string;
 }
