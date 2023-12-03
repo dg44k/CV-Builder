@@ -45,6 +45,10 @@ main {
   margin-block: 25px;
 }
 
+.pictCamera {
+  margin: 0 auto;
+}
+
 .uploadButton {
   display: block;
   position: relative;

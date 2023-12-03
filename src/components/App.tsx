@@ -7,9 +7,12 @@ import { useState } from "react";
 import Heading from "./Heading/Heading";
 import DateAbout from "./DateAbout/DateAbout";
 import Span from "./Span/Span";
+import { CVForm, PictureTypes } from "./types";
+import UploadButton from "../UploadButton/UploadButton";
+import DateUniversity from "./DateUniversity/DateUniversity";
 
 export default function App() {
-  const [dateInput, setDateInput] = useState({
+  const [dateInput, setDateInput] = useState<CVForm>({
     picture: null,
     fullname: "",
     speciality: "",
@@ -22,6 +25,14 @@ export default function App() {
     endDate: "",
     workExperience: "",
   });
+
+  const [showUploadPicture, setUploadPicture] = useState<PictureTypes>({
+    uploadPictureDisplay: "none",
+    viewPictureDisplay: "none",
+    url: "",
+  });
+
+  const [showPictCamera, setPictCamera] = useState("block");
 
   function loadPicture(input: HTMLInputElement): string {
     let dateIMG!: File;
@@ -53,19 +64,13 @@ export default function App() {
     if (event.target === document.querySelector("input[type=file]")) {
       const urlImage: string = loadPicture(event.target as HTMLInputElement);
 
-      (
-        document.querySelector(".uploadPicture") as HTMLImageElement
-      ).style.display = "block";
-      (
-        document.querySelector(".pictCamera") as HTMLImageElement
-      ).style.display = "none";
-      (
-        document.querySelector(".viewPicture") as HTMLImageElement
-      ).style.display = "block";
-      (document.querySelector(".uploadPicture") as HTMLImageElement).src =
-        urlImage;
-      (document.querySelector(".viewPicture") as HTMLImageElement).src =
-        urlImage;
+      setPictCamera("none");
+      setUploadPicture({
+        ...showUploadPicture,
+        uploadPictureDisplay: "block",
+        viewPictureDisplay: "block",
+        url: urlImage,
+      });
     }
 
     addHeading(event.target as HTMLInputElement | HTMLTextAreaElement);
@@ -129,7 +134,7 @@ export default function App() {
         <div className="controlPanel">
           <div className="aboutMeBlock">
             <Form action="#" className="block block_1">
-              <button className="uploadButton">
+              <UploadButton className="uploadButton">
                 <Input
                   type="file"
                   key="picture"
@@ -137,9 +142,18 @@ export default function App() {
                   myKey="picture"
                   onChange={changeInput}
                 />
-                <img src={CameraPicture} alt="camera" className="pictCamera" />
-                <img className="uploadPicture"></img>
-              </button>
+                <img
+                  src={CameraPicture}
+                  alt="camera"
+                  className="pictCamera"
+                  style={{ display: showPictCamera }}
+                />
+                <img
+                  className="uploadPicture"
+                  style={{ display: showUploadPicture.uploadPictureDisplay }}
+                  src={showUploadPicture.url}
+                ></img>
+              </UploadButton>
 
               <div className="wrapper_inputs">
                 <h2 className="headingBlock heading_aboutMe">About me</h2>
@@ -261,7 +275,11 @@ export default function App() {
             <div className="wrapper">
               <div className="resume_header">
                 <div className="wrapperPicture">
-                  <img className="viewPicture" />
+                  <img
+                    className="viewPicture"
+                    style={{ display: showUploadPicture.viewPictureDisplay }}
+                    src={showUploadPicture.url}
+                  />
                 </div>
                 <DateAbout className="block_about_me">
                   <Span className="info_fullname">{dateInput.fullname}</Span>
@@ -288,15 +306,15 @@ export default function App() {
                 />
                 <span className="info_schoolName">{dateInput.school}</span>
 
-                <div className="dateUniversity">
-                  <span className="info_universityName">
+                <DateUniversity className="dateUniversity">
+                  <Span className="info_universityName">
                     {dateInput.university}
-                  </span>
-                  <span className="info_dateReceipt">
+                  </Span>
+                  <Span className="info_dateReceipt">
                     {dateInput.dateReceipt}
-                  </span>
-                  <span className="info_endDate">{dateInput.endDate}</span>
-                </div>
+                  </Span>
+                  <Span className="info_endDate">{dateInput.endDate}</Span>
+                </DateUniversity>
 
                 <div className="resume_WorkExperience">
                   <Heading
