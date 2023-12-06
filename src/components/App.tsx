@@ -8,7 +8,7 @@ import Heading from "./Heading/Heading";
 import DateAbout from "./DateAbout/DateAbout";
 import Span from "./Span/Span";
 import { CVForm, PictureTypes } from "./types";
-import UploadButton from "../UploadButton/UploadButton";
+import UploadButton from "./UploadButton/UploadButton";
 import DateUniversity from "./DateUniversity/DateUniversity";
 
 export default function App() {
@@ -184,7 +184,6 @@ export default function App() {
                 <textarea
                   name="aboutMe"
                   className="t_area aboutMe"
-                  key={"aboutMe"}
                   onChange={changeInput}
                   ref={blockRefResume}
                   placeholder="About Me"
