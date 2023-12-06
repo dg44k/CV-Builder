@@ -102,7 +102,7 @@ export default function App() {
     } else if (target.closest(".block_2") && target.value !== "") {
       headingRefEducation.current!.style.display = "block";
     }
-    1;
+    
     function isInputValue(): Boolean {
       let flag: Boolean = true;
 
@@ -252,7 +252,6 @@ export default function App() {
                 <textarea
                   name="workExperience"
                   className=" t_area workExperience"
-                  key={"aboutMe"}
                   ref={blockRefExperience}
                   placeholder="Work experience"
                   onChange={changeTextArea}

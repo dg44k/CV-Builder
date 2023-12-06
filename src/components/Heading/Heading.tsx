@@ -1,9 +1,15 @@
+import { ForwardedRef, forwardRef } from "react";
 import { HeadingProps } from "./types";
 
-export default function Heading(props: HeadingProps<HTMLHeadingElement>) {
+const Heading = forwardRef (function Heading(
+  props: HeadingProps,
+  ref: ForwardedRef<HTMLHeadingElement>
+) {
   return (
-    <h3 className={"headingBlockResume " + props.className} ref={props.ref}>
+    <h3 className={"headingBlockResume " + props.className} ref={ref}>
       {props.dataName}
     </h3>
   );
-}
+});
+
+export default Heading;
