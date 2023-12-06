@@ -80,17 +80,6 @@ export default function App() {
       });
     }
 
-    blockRefResume.current = document.querySelector(".aboutMe");
-    blockRefExperience.current = document.querySelector(".workExperience");
-
-    headingRefResume.current = document.querySelector(".headingBlockSummary");
-    headingRefExperience.current = document.querySelector(
-      ".headingBlockExperience"
-    );
-    headingRefEducation.current = document.querySelector(
-      ".headingBlockEducation"
-    );
-
     addHeading(event.target as HTMLInputElement | HTMLTextAreaElement);
   }
 
