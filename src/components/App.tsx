@@ -3,7 +3,7 @@ import Input from "./Input/Input";
 import "../styles/App.css";
 import PictureGitHub from "../assets/github.png";
 import CameraPicture from "../assets/camera.png";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Heading from "./Heading/Heading";
 import DateAbout from "./DateAbout/DateAbout";
 import Span from "./Span/Span";
@@ -33,6 +33,13 @@ export default function App() {
   });
 
   const [showPictCamera, setPictCamera] = useState("block");
+
+  const blockRefResume = useRef<HTMLTextAreaElement | null>(null);
+  const blockRefExperience = useRef<HTMLTextAreaElement | null>(null);
+
+  const headingRefResume = useRef<HTMLHeadingElement | null>(null);
+  const headingRefExperience = useRef<HTMLHeadingElement | null>(null);
+  const headingRefEducation = useRef<HTMLHeadingElement | null>(null);
 
   function loadPicture(input: HTMLInputElement): string {
     let dateIMG!: File;
@@ -73,45 +80,35 @@ export default function App() {
       });
     }
 
+    blockRefResume.current = document.querySelector(".aboutMe");
+    blockRefExperience.current = document.querySelector(".workExperience");
+
+    headingRefResume.current = document.querySelector(".headingBlockSummary");
+    headingRefExperience.current = document.querySelector(
+      ".headingBlockExperience"
+    );
+    headingRefEducation.current = document.querySelector(
+      ".headingBlockEducation"
+    );
+
     addHeading(event.target as HTMLInputElement | HTMLTextAreaElement);
   }
 
   function addHeading(target: HTMLInputElement | HTMLTextAreaElement): void {
-    if (document.querySelector(".aboutMe") === target && target.value === "") {
-      (
-        document.querySelector(".headingBlockResume") as HTMLHeadingElement
-      ).style.display = "none";
-    } else if (
-      document.querySelector(".workExperience") === target &&
-      target.value === ""
-    ) {
-      (
-        document.querySelector(".headingBlockExperience") as HTMLHeadingElement
-      ).style.display = "none";
+    if (blockRefResume.current === target && target.value === "") {
+      headingRefResume.current!.style.display = "none";
+    } else if (blockRefExperience.current === target && target.value === "") {
+      headingRefExperience.current!.style.display = "none";
     } else if (target.closest(".block_2") && isInputValue()) {
-      (
-        document.querySelector(".headingBlockEducation") as HTMLHeadingElement
-      ).style.display = "none";
-    } else if (
-      document.querySelector(".aboutMe") === target &&
-      target.value !== ""
-    ) {
-      (
-        document.querySelector(".headingBlockResume") as HTMLHeadingElement
-      ).style.display = "block";
-    } else if (
-      document.querySelector(".workExperience") === target &&
-      target.value !== ""
-    ) {
-      (
-        document.querySelector(".headingBlockExperience") as HTMLHeadingElement
-      ).style.display = "block";
+      headingRefEducation.current!.style.display = "none";
+    } else if (blockRefResume.current === target && target.value !== "") {
+      headingRefResume.current!.style.display = "block";
+    } else if (blockRefExperience.current === target && target.value !== "") {
+      headingRefExperience.current!.style.display = "block";
     } else if (target.closest(".block_2") && target.value !== "") {
-      (
-        document.querySelector(".headingBlockEducation") as HTMLHeadingElement
-      ).style.display = "block";
+      headingRefEducation.current!.style.display = "block";
     }
-
+1
     function isInputValue(): Boolean {
       let flag: Boolean = true;
 
@@ -200,6 +197,7 @@ export default function App() {
                   className="t_area aboutMe"
                   key={"aboutMe"}
                   onChange={changeInput}
+                  ref={blockRefResume}
                   placeholder="About Me"
                 ></textarea>
               </div>
@@ -262,6 +260,7 @@ export default function App() {
                   name="workExperience"
                   className=" t_area workExperience"
                   key={"aboutMe"}
+                  ref={blockRefExperience}
                   placeholder="Work experience"
                   onChange={changeInput}
                 ></textarea>
@@ -295,7 +294,11 @@ export default function App() {
               </div>
 
               <div className="resume_summary">
-                <Heading className="headingBlockSummary" dataName="Summary" />
+                <Heading
+                  className="headingBlockSummary"
+                  dataName="Summary"
+                  ref={headingRefResume}
+                />
                 <p className="info_summary">{dateInput.aboutMe}</p>
               </div>
 
@@ -303,6 +306,7 @@ export default function App() {
                 <Heading
                   className="headingBlockEducation"
                   dataName="Education"
+                  ref={headingRefEducation}
                 />
                 <span className="info_schoolName">{dateInput.school}</span>
 
@@ -320,6 +324,7 @@ export default function App() {
                   <Heading
                     className="headingBlockExperience"
                     dataName="WorkExperience"
+                    ref={headingRefExperience}
                   />
                   <p className="info_workExperience">
                     {dateInput.workExperience}

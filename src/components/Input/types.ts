@@ -1,6 +1,6 @@
-import { ChangeEventHandler } from "react";
+import { ChangeEventHandler, RefObject } from "react";
 
-export type InputProps = {
+export type InputProps<T> = {
   type: string;
   name?: string;
   myKey: string;
@@ -8,4 +8,5 @@ export type InputProps = {
   placeholder?: string;
   required?: boolean;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  ref ?: RefObject<T>;
 };

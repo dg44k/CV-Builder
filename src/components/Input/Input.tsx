@@ -1,6 +1,6 @@
 import { InputProps } from "./types";
 
-function Input(props: InputProps) {
+function Input(props: InputProps<HTMLInputElement>) {
   return (
     <input
       type={props.type}
@@ -10,6 +10,7 @@ function Input(props: InputProps) {
       accept={props.accept}
       placeholder={props.placeholder}
       onChange={props.onChange}
+      ref={props.ref}
       required
     />
   );
