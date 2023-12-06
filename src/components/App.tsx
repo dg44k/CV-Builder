@@ -53,9 +53,21 @@ export default function App() {
     return URL.createObjectURL(dateIMG);
   }
 
-  function changeInput(
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void {
+  function changeFile(event: React.ChangeEvent<HTMLInputElement>): void {
+    setDateInput({ ...dateInput, [event.target.name]: event.target.value });
+
+    const urlImage: string = loadPicture(event.target as HTMLInputElement);
+
+    setPictCamera("none");
+    setUploadPicture({
+      ...showUploadPicture,
+      uploadPictureDisplay: "block",
+      viewPictureDisplay: "block",
+      url: urlImage,
+    });
+  }
+
+  function changeTextArea(event: React.ChangeEvent<HTMLTextAreaElement>): void {
     setDateInput({ ...dateInput, [event.target.name]: event.target.value });
 
     if (
@@ -68,19 +80,12 @@ export default function App() {
       }
     }
 
-    if (event.target === document.querySelector("input[type=file]")) {
-      const urlImage: string = loadPicture(event.target as HTMLInputElement);
+    addHeading(event.target as HTMLTextAreaElement);
+  }
 
-      setPictCamera("none");
-      setUploadPicture({
-        ...showUploadPicture,
-        uploadPictureDisplay: "block",
-        viewPictureDisplay: "block",
-        url: urlImage,
-      });
-    }
-
-    addHeading(event.target as HTMLInputElement | HTMLTextAreaElement);
+  function changeInput(event: React.ChangeEvent<HTMLInputElement>): void {
+    setDateInput({ ...dateInput, [event.target.name]: event.target.value });
+    addHeading(event.target as HTMLInputElement);
   }
 
   function addHeading(target: HTMLInputElement | HTMLTextAreaElement): void {
@@ -97,7 +102,7 @@ export default function App() {
     } else if (target.closest(".block_2") && target.value !== "") {
       headingRefEducation.current!.style.display = "block";
     }
-1
+    1;
     function isInputValue(): Boolean {
       let flag: Boolean = true;
 
@@ -126,7 +131,7 @@ export default function App() {
                   key="picture"
                   accept="image/*"
                   myKey="picture"
-                  onChange={changeInput}
+                  onChange={changeFile}
                 />
                 <img
                   src={CameraPicture}
@@ -184,7 +189,7 @@ export default function App() {
                 <textarea
                   name="aboutMe"
                   className="t_area aboutMe"
-                  onChange={changeInput}
+                  onChange={changeTextArea}
                   ref={blockRefResume}
                   placeholder="About Me"
                 ></textarea>
@@ -250,7 +255,7 @@ export default function App() {
                   key={"aboutMe"}
                   ref={blockRefExperience}
                   placeholder="Work experience"
-                  onChange={changeInput}
+                  onChange={changeTextArea}
                 ></textarea>
               </div>
             </Form>
