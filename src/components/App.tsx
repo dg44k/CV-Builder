@@ -79,7 +79,7 @@ export default function App() {
         event.target.style.height = event.target.scrollHeight + "px";
       }
     }
-
+    
     addHeading(event.target as HTMLTextAreaElement);
   }
 
